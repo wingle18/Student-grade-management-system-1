@@ -387,14 +387,13 @@ void Write_Grade_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int
 			system("pause");
 			Write_Grade_Info(stu, cou, gra, i0, i1, i2);
 		}
-		bool flag2 = 0, flag3 = 0;
+		bool flag = 0;
 		for (int n = 0;n < i2;n++)
-			if (gra[n].Get_num() == b)
-				flag2 = 1;
-		for (int n = 0;n < i2;n++)
-			if (gra[n].Get_course_num() == g)
-				flag3 = 1;
-		if (flag2 == 1 && flag3 == 1)
+		{
+			if (gra[n].Get_num() == b && gra[n].Get_course_num() == g)
+				flag = 1;
+		}
+		if (flag==1)
 		{
 			system("cls");
 			std::cout << "该成绩已经存在,请重新录入成绩!" << std::endl;
