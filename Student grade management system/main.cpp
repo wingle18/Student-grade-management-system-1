@@ -393,7 +393,7 @@ void Write_Grade_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int
 			if (gra[n].Get_num() == b && gra[n].Get_course_num() == g)
 				flag = 1;
 		}
-		if (flag==1)
+		if (flag == 1)
 		{
 			system("cls");
 			std::cout << "该成绩已经存在,请重新录入成绩!" << std::endl;
@@ -842,22 +842,54 @@ void Read_Student_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, in
 void Read_Course_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
 {
 	system("cls");
-	if (i1 != 0)
+	std::cout << "查看课程信息" << std::endl;
+	std::cout << "1.按课程号查询课程信息 2.返回上一层界面 3.返回主界面" << std::endl;
+	string i;
+	cin >> i;
+	bool flag = 0;
+	if (i == "1")
 	{
-		string a;
-		std::cout << "请输入要查看课程的课程号:" << std::endl;
-		std::cin >> a;
-		for (int k = 0;k < i1;k++)
-			if (cou[k].Get_course_num() == a)
-				cou[k].Print();
-		system("pause");
-		tmain();
+		if (i1 != 0)
+		{
+			system("cls");
+			std::cout << "按课程号查询课程信息" << std::endl;
+			string a;
+			std::cout << "请输入要查看课程的课程号:" << std::endl;
+			std::cin >> a;
+			system("cls");
+			for (int k = 0;k < i1;k++)
+				if (cou[k].Get_course_num() == a)
+				{
+					cou[k].Print();
+					flag = 1;
+				}
+			if (flag == 0)
+			{
+				system("cls");
+				std::cout << "未找到该课程号的课程, 请重新输入" << std::endl;
+				system("pause");
+				Read_Course_Info(stu, cou, gra, i0, i1, i2);
+			}
+			system("pause");
+			tmain();
+		}
+		else
+		{
+			std::cout << "课程信息为空,请先录入课程信息!" << std::endl;
+			system("pause");
+			tmain();
+		}
 	}
+	if (i == "2")
+		Read_Info(stu, cou, gra, i0, i1, i2);
+	if (i == "3")
+		tmain();
 	else
 	{
-		std::cout << "课程信息为空,请先录入课程信息!" << std::endl;
+		system("cls");
+		std::cout << "输入错误,请重新输入!" << endl;
 		system("pause");
-		tmain();
+		Read_Course_Info(stu, cou, gra, i0, i1, i2);
 	}
 }
 void Read_Grade_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
