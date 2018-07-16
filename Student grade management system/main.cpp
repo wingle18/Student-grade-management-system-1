@@ -46,7 +46,7 @@ protected:
 public:
 	Student(string a = "N/A", string b = "N/A", int c = 0, string d = "N/A", string e = "N/A", bool f = 0) :name(a), num(b), sex(f), Tclass(d, e, c)
 	{}
-	Student(const Student &p) :name(p.name), num(p.name), sex(p.sex), Tclass(p)
+	Student(const Student &p) :name(p.name), num(p.num), sex(p.sex), Tclass(p)
 	{}
 	~Student()
 	{}
@@ -108,6 +108,10 @@ public:
 		ss << course_credit;
 		return ss.str();
 	}
+	int Get_course_credit(int)
+	{
+		return course_credit;
+	}
 	string Get_course_semester()
 	{
 		return course_semester;
@@ -130,6 +134,10 @@ public:
 	{
 		std::cout << name << " " << num << " " << sex << " " << major << " " << teach_class << " " << year << " " << course_num << " " << course_name << " " << course_credit << " " << course_semester << " " << score << " " << score_rank << " " << gradepoint << std::endl;
 	}
+	double Get_gradepoint()
+	{
+		return gradepoint;
+	}
 };
 //新建和修改的时候用文本,改完后生成类,显示信息的时候用类的函数
 //基本要求系统中设计的类的数目不少于4个，每个类中要有各自的属性（多于3个）和方法（多于3个）；需要定义一个抽像类，
@@ -138,6 +146,9 @@ void tmain();				//声明
 void Write_Info(Student *, Course *, Grade *, int, int, int);
 void Delete_Info(Student *, Course *, Grade *, int, int, int);
 void Read_Info(Student *, Course *, Grade *, int, int, int);
+inline double GPA(Student *, Course *, Grade *, int, int, int, Student&);
+inline int Class_Rank(Student *, Course *, Grade *, int, int, int,Student&);
+inline int Major_Rank(Student *, Course *, Grade *, int, int, int,Student&);
 void Write_Student_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
 {
 	system("cls");
@@ -786,11 +797,23 @@ void Delete_Grade_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, in
 		Delete_Grade_Info(stu, cou, gra, i0, i1, i2);
 	}
 }
+void Change_Student_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
+{
+
+}
+void Change_Course_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
+{
+
+}
+void Change_Grade_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
+{
+
+}
 void Read_Student_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
 {
 	system("cls");
 	std::cout << "查看学生信息" << std::endl;
-	std::cout << "1.按学号查询学生信息 2.返回上一层界面 3.返回主界面" << std::endl;
+	std::cout << "1.按学号查询学生基本信息 2.查看学生所有课的成绩(打印成绩单) 3.返回上一层界面 4.返回主界面" << std::endl;
 	string i;
 	cin >> i;
 	if (i == "1")
@@ -828,8 +851,37 @@ void Read_Student_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, in
 		}
 	}
 	if (i == "2")
-		Read_Info(stu, cou, gra, i0, i1, i2);
+	{
+		system("cls");
+		std::cout << "查看学生所有课的成绩(打印成绩单)" << std::endl;
+		std::cout << "请输入要查看学生的学号:" << std::endl;
+		string a;
+		Student b;
+		std::cin >> a;
+		bool flag = 0;
+		for (int k = 0; k < i0; k++)
+			if (stu[k].Get_num() == a)
+			{
+				b = stu[k];
+				flag = 1;
+			}
+		system("cls");
+		if (flag == 0)
+		{
+			system("cls");
+			std::cout << "未找到该学号的学生, 请重新输入" << std::endl;
+			system("pause");
+			Read_Student_Info(stu, cou, gra, i0, i1, i2);
+		}
+		for (int i = 0;i < i2;i++)
+			if (gra[i].Get_num() == b.Get_num())
+				gra[i].Print();
+		system("pause");
+		tmain();
+	}
 	if (i == "3")
+		Read_Info(stu, cou, gra, i0, i1, i2);
+	if (i == "4")
 		tmain();
 	else
 	{
@@ -843,7 +895,7 @@ void Read_Course_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int
 {
 	system("cls");
 	std::cout << "查看课程信息" << std::endl;
-	std::cout << "1.按课程号查询课程信息 2.返回上一层界面 3.返回主界面" << std::endl;
+	std::cout << "1.按课程号查询课程基本信息 2.按课程号查看该课程所有学生的成绩 3.返回上一层界面 4.返回主界面" << std::endl;
 	string i;
 	cin >> i;
 	bool flag = 0;
@@ -881,8 +933,36 @@ void Read_Course_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int
 		}
 	}
 	if (i == "2")
-		Read_Info(stu, cou, gra, i0, i1, i2);
+	{
+		system("cls");
+		std::cout << "按课程号查看该课程所有学生的成绩" << std::endl;
+		string a;
+		std::cout << "请输入要查看课程的课程号:" << std::endl;
+		std::cin >> a;
+		Course b;
+		system("cls");
+		for (int k = 0;k < i1;k++)
+			if (cou[k].Get_course_num() == a)
+			{
+				b = cou[k];
+				flag = 1;
+			}
+		if (flag == 0)
+		{
+			system("cls");
+			std::cout << "未找到该课程号的课程, 请重新输入" << std::endl;
+			system("pause");
+			Read_Course_Info(stu, cou, gra, i0, i1, i2);
+		}
+		for (int i = 0;i < i2;i++)
+			if (gra[i].Get_course_num() == b.Get_course_num())
+				gra[i].Print();
+		system("pause");
+		tmain();
+	}
 	if (i == "3")
+		Read_Info(stu, cou, gra, i0, i1, i2);
+	if (i == "4")
 		tmain();
 	else
 	{
@@ -947,6 +1027,62 @@ void Read_Grade_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int 
 		Read_Grade_Info(stu, cou, gra, i0, i1, i2);
 	}
 }
+void Read_Rank_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
+{
+	system("cls");
+	std::cout << "查看排名" << std::endl;
+	std::cout << "1.查看单个学生的排名 2.查看整个班级的排名 3.查看整个专业的排名 4.返回上一层界面 5.返回主界面" << std::endl;
+	string i;
+	cin >> i;
+	if (i == "1")
+	{
+		system("cls");
+		std::cout << "查看单个学生的排名" << std::endl;
+		std::cout << "请输入要查看学生的学号:" << std::endl;
+		string a;
+		Student b;
+		std::cin >> a;
+		bool flag = 0;
+		for (int k = 0; k < i0; k++)
+			if (stu[k].Get_num() == a)
+			{
+				b = stu[k];
+				flag = 1;
+			}
+		system("cls");
+		if (flag == 0)
+		{
+			system("cls");
+			std::cout << "未找到该学号的学生, 请重新输入" << std::endl;
+			system("pause");
+			Read_Rank_Info(stu, cou, gra, i0, i1, i2);
+		}
+		std::cout << "班级排名: " << Class_Rank(stu, cou, gra, i0, i1, i2, b) << std::endl;
+		std::cout << "专业排名: " << Major_Rank(stu, cou, gra, i0, i1, i2, b) << std::endl;
+		system("pause");
+		tmain();
+	}
+	if (i == "2")
+	{
+		system("cls");
+		std::cout << "查看整个专业的排名" << std::endl;
+	}
+	if (i == "3")
+	{
+		
+	}
+	if (i == "4")
+		Read_Info(stu, cou, gra, i0, i1, i2);
+	if (i == "5")
+		tmain();
+	else
+	{
+		system("cls");
+		std::cout << "输入错误,请重新输入!" << endl;
+		system("pause");
+		Read_Rank_Info(stu, cou, gra, i0, i1, i2);
+	}
+}
 void Write_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
 {
 	system("cls");
@@ -995,11 +1131,15 @@ void Delete_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
 		Delete_Info(stu, cou, gra, i0, i1, i2);
 	}
 }
+void Change_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
+{
+
+}
 void Read_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
 {
 	system("cls");
 	std::cout << "查看信息" << endl;
-	std::cout << "1.查看学生信息 2. 查看课程信息 3. 查看成绩 4.返回主界面" << std::endl;
+	std::cout << "1.查看学生信息 2. 查看课程信息 3. 查看成绩 4.查看排名 5.返回主界面" << std::endl;
 	string i;
 	std::cin >> i;
 	if (i == "1")
@@ -1009,6 +1149,10 @@ void Read_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
 	if (i == "3")
 		Read_Grade_Info(stu, cou, gra, i0, i1, i2);
 	if (i == "4")
+	{
+		Read_Rank_Info(stu, cou, gra, i0, i1, i2);
+	}
+	if (i == "5")
 	{
 		system("cls");
 		tmain();
@@ -1021,6 +1165,38 @@ void Read_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
 		system("cls");
 		Read_Info(stu, cou, gra, i0, i1, i2);
 	}
+}
+inline double GPA(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2,Student &a)
+{
+	double grade=0;
+	int credit=0;
+	double gpa=0;
+	for (int i = 0;i < i2;i++)
+	{
+		if (gra[i].Get_num() == a.Get_num())
+		{
+			grade += gra[i].Get_gradepoint()*gra[i].Get_course_credit(1);
+			credit += gra[i].Get_course_credit(1);
+		}
+	}
+	gpa = grade / credit;
+	return gpa;
+}
+inline int Class_Rank(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2,Student &a)
+{
+	int rank = 1;
+	for (int i = 0;i < i0; i++)
+		if (stu[i].Get_teach_class() == a.Get_teach_class() && GPA(stu, cou, gra, i0, i1, i2, stu[i]) > GPA(stu, cou, gra, i0, i1, i2, a))
+			rank++;
+	return rank;
+}
+inline int Major_Rank(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2,Student &a)
+{
+	int rank = 1;
+	for (int i = 0;i < i0; i++)
+		if (stu[i].Get_major() == a.Get_major() &&stu[i].Get_year()==a.Get_year()&& GPA(stu, cou, gra, i0, i1, i2, stu[i]) > GPA(stu, cou, gra, i0, i1, i2, a))
+			rank++;
+	return rank;
 }
 void tmain()
 {
