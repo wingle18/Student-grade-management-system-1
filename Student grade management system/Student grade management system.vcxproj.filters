@@ -15,8 +15,51 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="old.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Tclass.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Student.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Course.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Grade.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Figure.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Tclass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Student.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Course.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Grade.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="course.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="grade.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="student.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="temp.txt">
+      <Filter>资源文件</Filter>
+    </Text>
   </ItemGroup>
 </Project>
