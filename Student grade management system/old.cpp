@@ -147,8 +147,8 @@ void Write_Info(Student *, Course *, Grade *, int, int, int);
 void Delete_Info(Student *, Course *, Grade *, int, int, int);
 void Read_Info(Student *, Course *, Grade *, int, int, int);
 inline double GPA(Student *, Course *, Grade *, int, int, int, Student&);
-inline int Class_Rank(Student *, Course *, Grade *, int, int, int,Student&);
-inline int Major_Rank(Student *, Course *, Grade *, int, int, int,Student&);
+inline int Class_Rank(Student *, Course *, Grade *, int, int, int, Student&);
+inline int Major_Rank(Student *, Course *, Grade *, int, int, int, Student&);
 void Write_Student_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
 {
 	system("cls");
@@ -438,72 +438,6 @@ void Delete_Student_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, 
 	string i;
 	bool flag = 0;
 	cin >> i;
-	//if(i=="1")
-	//{
-	//	system("cls");
-	//	ifstream inf;
-	//	ofstream of;
-	//	inf.open("student.txt");
-	//	of.open("temp.txt");		//临时保存原来的文件内容
-	//	string b,c,d=" ",e;
-	//	std::cout<<"请输入要修改学生的姓名:"<<std::endl;
-	//	std::cin>>c;
-	//	b+=c;
-	//	b+=d;
-	//	std::cout<<"请输入要修改学生的学号:"<<std::endl;
-	//	std::cin>>c;
-	//	b+=c;
-	//	b+=d;
-	//	std::cout<<"请输入要修改学生的入学年份:"<<std::endl;
-	//	std::cin>>c;
-	//	b+=c;
-	//	b+=d;
-	//	std::cout<<"请输入要修改学生的专业:"<<std::endl;
-	//	std::cin>>c;
-	//	b+=c;
-	//	b+=d;
-	//	std::cout<<"请输入要修改学生的教学班级:"<<std::endl;
-	//	std::cin>>c;
-	//	b+=c;
-	//	b+=d;
-	//	std::cout<<"请输入要修改学生的性别:"<<std::endl;
-	//	std::cin>>c;
-	//	b+=c;
-	//	for(;;)
-	//	{
-	//		getline(inf,e);
-	//		if(e=="\0"||inf.eof())
-	//			break;
-	//		if(e!=b)
-	//			of<<e<<std::endl;
-	//		else
-	//			flag=1;
-	//	}
-	//	if(flag==0)
-	//	{
-	//		system("cls");
-	//		std::cout<<"要修改的学生信息不存在!"<<std::endl;
-	//		system("pause");
-	//		Delete_Student_Info(stu,cou,gra,i0,i1,i2);
-	//	}
-	//	inf.close();
-	//	of.close();
-	//	of.open("student.txt");
-	//	inf.open("temp.txt");
-	//	for(;;)
-	//	{
-	//		getline(inf,e);
-	//		if(e=="\0"||inf.eof())
-	//			break;
-	//		of<<e<<std::endl;
-	//	}
-	//	inf.close();
-	//	of.close();
-	//	system("cls");
-	//	std::cout<<"下面请输入新的信息:"<<std::endl;
-	//	system("pause");
-	//	Write_Student_Info(stu,cou,gra,i0,i1,i2);
-	//}
 	if (i == "1")
 	{
 		system("cls");
@@ -511,13 +445,15 @@ void Delete_Student_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, 
 		ofstream of;
 		inf.open("student.txt");
 		of.open("temp.txt");		//临时保存原来的文件内容
-		string b, c, d = " ", e;
+		string a, b, c, d = " ", e;
+		std::cout << "请注意! 删除学生的同时会删除该学生相应的成绩, 该操作不可逆!" << std::endl;
 		std::cout << "请输入要删除学生的姓名:" << std::endl;
 		std::cin >> c;
 		b += c;
 		b += d;
 		std::cout << "请输入要删除学生的学号:" << std::endl;
 		std::cin >> c;
+		a = c;
 		b += c;
 		b += d;
 		std::cout << "请输入要删除学生的入学年份:" << std::endl;
@@ -565,6 +501,29 @@ void Delete_Student_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, 
 		}
 		inf.close();
 		of.close();
+		inf.open("grade.txt");
+		of.open("temp.txt");
+		for (int i = 0;i < i2;i++)
+		{
+			if (gra[i].Get_num() != a)
+			{
+				getline(inf, e);
+				of << e << std::endl;
+			}
+			else
+				getline(inf, e);
+		}
+		inf.close();
+		of.close();
+		inf.open("temp.txt");
+		of.open("grade.txt");
+		for (;;)
+		{
+			getline(inf, e);
+			if (e == "\0" || inf.eof())
+				break;
+			of << e << std::endl;
+		}
 		system("cls");
 		std::cout << "删除学生信息成功!" << std::endl;
 		system("pause");
@@ -593,12 +552,12 @@ void Delete_Course_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, i
 	if (i == "1")
 	{
 		system("cls");
-		std::cout << "删除课程信息" << std::endl;
+		std::cout << "请注意! 删除课程信息的同时会删去该课程的所有成绩, 该操作不可逆!" << std::endl;
 		ifstream inf;
 		ofstream of;
 		inf.open("course.txt");
 		of.open("temp.txt");
-		string a, b, c = " ";
+		string a, b, c = " ",d;
 		std::cout << "请输入要删除课程的课程号" << std::endl;
 		std::cin >> a;
 		b += a;
@@ -609,6 +568,7 @@ void Delete_Course_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, i
 		b += c;
 		std::cout << "请输入要删除课程的学分" << std::endl;
 		std::cin >> a;
+		d = a;
 		b += a;
 		b += c;
 		std::cout << "请输入要删除课程所属的学期" << std::endl;
@@ -644,6 +604,29 @@ void Delete_Course_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, i
 		}
 		inf.close();
 		of.close();
+		inf.open("grade.txt");
+		of.open("temp.txt");
+		for (int i = 0;i < i2;i++)
+		{
+			if (gra[i].Get_course_num() != d)
+			{
+				getline(inf, c);
+				of << c << std::endl;
+			}
+			else
+				getline(inf, c);
+		}
+		inf.close();
+		of.close();
+		inf.open("temp.txt");
+		of.open("grade.txt");
+		for (;;)
+		{
+			getline(inf, c);
+			if (c == "\0" || inf.eof())
+				break;
+			of << c << std::endl;
+		}
 		system("cls");
 		std::cout << "删除课程信息成功!" << std::endl;
 		system("pause");
@@ -1065,11 +1048,20 @@ void Read_Rank_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i
 	if (i == "2")
 	{
 		system("cls");
-		std::cout << "查看整个专业的排名" << std::endl;
+		string a;
+		std::cout << "查看整个班级的排名" << std::endl;
+		std::cout << "请输入班级的名称:" << std::endl;
+		std::cin >> a;
 	}
 	if (i == "3")
 	{
-		
+		system("cls");
+		string a, b;
+		std::cout << "查看整个专业的排名" << std::endl;
+		std::cout << "请输入专业的名称:" << std::endl;
+		std::cin >> a;
+		std::cout << "请输入入学年份" << std::endl;
+		std::cin >> b;
 	}
 	if (i == "4")
 		Read_Info(stu, cou, gra, i0, i1, i2);
@@ -1166,11 +1158,11 @@ void Read_Info(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2)
 		Read_Info(stu, cou, gra, i0, i1, i2);
 	}
 }
-inline double GPA(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2,Student &a)
+inline double GPA(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2, Student &a)
 {
-	double grade=0;
-	int credit=0;
-	double gpa=0;
+	double grade = 0;
+	int credit = 0;
+	double gpa = 0;
 	for (int i = 0;i < i2;i++)
 	{
 		if (gra[i].Get_num() == a.Get_num())
@@ -1182,7 +1174,7 @@ inline double GPA(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2,
 	gpa = grade / credit;
 	return gpa;
 }
-inline int Class_Rank(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2,Student &a)
+inline int Class_Rank(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2, Student &a)
 {
 	int rank = 1;
 	for (int i = 0;i < i0; i++)
@@ -1190,11 +1182,11 @@ inline int Class_Rank(Student *stu, Course *cou, Grade *gra, int i0, int i1, int
 			rank++;
 	return rank;
 }
-inline int Major_Rank(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2,Student &a)
+inline int Major_Rank(Student *stu, Course *cou, Grade *gra, int i0, int i1, int i2, Student &a)
 {
 	int rank = 1;
 	for (int i = 0;i < i0; i++)
-		if (stu[i].Get_major() == a.Get_major() &&stu[i].Get_year()==a.Get_year()&& GPA(stu, cou, gra, i0, i1, i2, stu[i]) > GPA(stu, cou, gra, i0, i1, i2, a))
+		if (stu[i].Get_major() == a.Get_major() && stu[i].Get_year() == a.Get_year() && GPA(stu, cou, gra, i0, i1, i2, stu[i]) > GPA(stu, cou, gra, i0, i1, i2, a))
 			rank++;
 	return rank;
 }
