@@ -4,9 +4,12 @@ void tmain()
 	vector <Student> stu;
 	vector <Course> cou;
 	vector <Grade> gra;
-	stu_cons(stu);
-	cou_cons(cou);
-	gra_cons(gra);
+	sync_in(stu);
+	sync_in(cou);
+	sync_in(gra);
+	sync_out(stu);
+	sync_out(cou);
+	sync_out(gra);
 	system("cls");
 	cout << "学生成绩管理系统" << endl;
 	cout << "1. 录入信息 2. 删除信息 3.修改信息 4. 查看信息 5.退出系统" << endl;

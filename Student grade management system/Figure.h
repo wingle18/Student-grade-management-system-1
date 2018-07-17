@@ -5,5 +5,5 @@ using namespace std;
 class Figure
 {
 public:
-	void virtual Print() = 0;
+	string virtual Put_string() = 0;
 };

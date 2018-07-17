@@ -12,6 +12,6 @@ public:
 	Grade(const string &a,const string &b,const string &c,const string &d,const string &e,const int &f,const string &g,const string &h,const int &i,const string &j,const int &k,const string &l,const double &m);
 	Grade(const Grade &p);
 	~Grade();
-	void Print();
+	string Put_string();
 };
 

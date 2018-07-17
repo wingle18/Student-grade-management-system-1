@@ -1,7 +1,7 @@
 #pragma once
 #include "Figure.h"
 class Course :
-	public Figure
+	virtual public Figure
 {
 	protected:
 		string course_num;//¿Î³ÌºÅ
@@ -12,6 +12,6 @@ public:
 	Course(const string &a,const string &b,const int &c,const string &d);
 	Course(const Course &p);
 	~Course();
-	void Print();
+	string Put_string();
 };
 

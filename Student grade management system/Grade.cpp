@@ -15,6 +15,10 @@ Grade::~Grade()
 {
 }
 
-void Grade::Print()
+string Grade::Put_string()
 {
+	stringstream ss, ss1;
+	ss << score;
+	ss1 << gradepoint;
+	return(Student::Put_string() + ' ' + Course::Put_string() + ' ' + ss.str() + ' ' + score_rank + ' ' + ss1.str());
 }

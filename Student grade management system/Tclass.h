@@ -1,7 +1,7 @@
 #pragma once
-#include "Figure.h"
-class Tclass :
-	public Figure
+#include "string"
+using namespace std;
+class Tclass
 {
 protected:
 		string major;

@@ -1,5 +1,5 @@
-#include "vector_cons.h"
-void stu_cons(vector <Student> &stu)
+#include "sync.h"
+void sync_in(vector <Student> &stu)
 {
 	ifstream inf;
 	inf.open("student.txt");
@@ -18,7 +18,7 @@ void stu_cons(vector <Student> &stu)
 	}
 }
 
-void cou_cons(vector <Course> &cou)
+void sync_in(vector <Course> &cou)
 {
 	ifstream inf;
 	inf.open("course.txt");
@@ -37,7 +37,7 @@ void cou_cons(vector <Course> &cou)
 	}
 }
 
-void gra_cons(vector <Grade> &gra)
+void sync_in(vector <Grade> &gra)
 {
 	ifstream inf;
 	inf.open("grade.txt");
@@ -55,4 +55,25 @@ void gra_cons(vector <Grade> &gra)
 		}
 		inf.close();
 	}
+}
+
+void sync_out(vector<Student>& stu)
+{
+	ofstream of;
+	of.open("student.txt");
+	sync_out_core(stu,of);
+}
+
+void sync_out(vector <Course> &cou)
+{
+	ofstream of;
+	of.open("course.txt");
+	sync_out_core(cou,of);
+}
+
+void sync_out(vector <Grade> &gra)
+{
+	ofstream of;
+	of.open("grade.txt");
+	sync_out_core(gra,of);
 }

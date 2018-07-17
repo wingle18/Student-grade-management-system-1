@@ -13,6 +13,9 @@ Student::~Student()
 {
 }
 
-void Student::Print()
+string Student::Put_string()
 {
+	stringstream ss;
+	ss << year;
+	return(stu_name + ' ' + stu_num + ' ' + stu_sex + ' ' + major + ' ' + teach_class+' '+ss.str());
 }

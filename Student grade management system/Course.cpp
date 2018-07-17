@@ -1,5 +1,5 @@
 #include "Course.h"
-
+#include "sstream"
 
 Course::Course(const string & a, const string & b, const int & c, const string & d):course_num(a),course_name(b),course_credit(c),course_semester(d)
 {
@@ -13,6 +13,9 @@ Course::~Course()
 {
 }
 
-void Course::Print()
+string Course::Put_string()
 {
+	stringstream ss;
+	ss << course_credit;
+	return(course_num + ' ' + course_name + ' ' + ss.str() + ' ' + course_semester);
 }

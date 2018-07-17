@@ -123,7 +123,7 @@
     <ClCompile Include="Read_Info.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="Tclass.cpp" />
-    <ClCompile Include="vector_cons.cpp" />
+    <ClCompile Include="sync.cpp" />
     <ClCompile Include="Write_Info.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -136,7 +136,7 @@
     <ClInclude Include="Read_Info.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="Tclass.h" />
-    <ClInclude Include="vector_cons.h" />
+    <ClInclude Include="sync.h" />
     <ClInclude Include="Write_Info.h" />
   </ItemGroup>
   <ItemGroup>
