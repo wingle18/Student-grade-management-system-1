@@ -1,7 +1,5 @@
 #pragma once
 #include "Figure.h"
-#include "string"
-using namespace std;
 class Course :
 	public Figure
 {

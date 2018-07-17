@@ -115,18 +115,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Change_Info.cpp" />
     <ClCompile Include="Course.cpp" />
+    <ClCompile Include="Delete_Info.cpp" />
     <ClCompile Include="Grade.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Read_Info.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="Tclass.cpp" />
+    <ClCompile Include="vector_cons.cpp" />
+    <ClCompile Include="Write_Info.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Change_Info.h" />
     <ClInclude Include="Course.h" />
+    <ClInclude Include="Delete_Info.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="Grade.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="Read_Info.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="Tclass.h" />
+    <ClInclude Include="vector_cons.h" />
+    <ClInclude Include="Write_Info.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="course.txt" />

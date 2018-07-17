@@ -1,0 +1,13 @@
+#pragma once
+#include "Grade.h"
+#include "iostream"
+#include "vector"
+#include "algorithm"
+#include "fstream"
+#include "sstream"
+#include "vector_cons.h"
+#include "Write_Info.h"
+#include "Delete_Info.h"
+#include "Change_Info.h"
+#include "Read_Info.h"
+void tmain();
