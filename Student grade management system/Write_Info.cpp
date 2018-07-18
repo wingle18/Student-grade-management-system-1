@@ -7,6 +7,11 @@ void Write_Info(vector<Student>& stu, vector<Course>& cou, vector<Grade>& gra)
 	string i;
 	cin >> i;
 	if (i == "1")
+	{
+		system("cls");
+		cout << "录入学生信息" << endl;
+
+	}
 		Write_Student_Info(stu);
 	if (i == "2")
 		Write_Course_Info(cou);

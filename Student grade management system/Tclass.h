@@ -8,7 +8,7 @@ protected:
 		string teach_class;
 		int year;
 public:
-	Tclass(const string&a, const string&b, const int&c);
+	Tclass(const string&a=0, const string&b=0, const int&c=0);
 	Tclass(const Tclass&p);
 	~Tclass();
 };

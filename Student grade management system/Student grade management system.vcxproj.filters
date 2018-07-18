@@ -36,9 +36,6 @@
     <ClCompile Include="Delete_Info.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="sync.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Read_Info.cpp">
       <Filter>源文件</Filter>
     </ClCompile>

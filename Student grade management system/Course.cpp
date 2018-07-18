@@ -1,5 +1,4 @@
 #include "Course.h"
-#include "sstream"
 
 Course::Course(const string & a, const string & b, const int & c, const string & d):course_num(a),course_name(b),course_credit(c),course_semester(d)
 {
@@ -19,3 +18,26 @@ string Course::Put_string()
 	ss << course_credit;
 	return(course_num + ' ' + course_name + ' ' + ss.str() + ' ' + course_semester);
 }
+
+void Course::Inf_Change(ifstream & inf)
+{
+	string a, b, d;
+	int c;
+	inf >> a >> b >> c >> d;
+	course_num = a;
+	course_name = b;
+	course_credit = c;
+	course_semester = d;
+}
+
+
+void Course::TXT_I(ifstream & inf)
+{
+	inf.open("course.txt");
+}
+
+void Course::TXT_O(ofstream & of)
+{
+	of.open("course.txt");
+}
+
