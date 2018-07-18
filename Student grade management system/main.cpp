@@ -7,7 +7,6 @@ int main()
 	sync_in(stu);
 	sync_in(cou);
 	sync_in(gra);
-	mainwindow ma;
-	ma.func(stu,cou,gra);
+	mainwindow().func(stu,cou,gra);
 	return 0;
 }

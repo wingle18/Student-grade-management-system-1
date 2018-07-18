@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Course.cpp" />
+    <ClCompile Include="function.cpp" />
     <ClCompile Include="Grade.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
@@ -126,6 +127,7 @@
   <ItemGroup>
     <ClInclude Include="Course.h" />
     <ClInclude Include="Figure.h" />
+    <ClInclude Include="function.h" />
     <ClInclude Include="Grade.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="mainwindow.h" />
@@ -138,7 +140,6 @@
     <Text Include="course.txt" />
     <Text Include="grade.txt" />
     <Text Include="student.txt" />
-    <Text Include="temp.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

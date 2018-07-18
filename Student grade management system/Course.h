@@ -3,6 +3,9 @@
 #include "sstream"
 #include "fstream"
 #include "vector"
+#include "iostream"
+class Student;
+class Grade;
 class Course :
 	virtual public Figure
 {
@@ -19,5 +22,11 @@ public:
 	void Inf_Change (ifstream & inf);
 	static void TXT_I(ifstream &inf);
 	static void TXT_O(ofstream &of);
+	void Key_Change(vector <Student> &stu, vector <Course> &cou, vector <Grade> &gra);
+	string Get_course_num();
+	static void Write_Success();
+	static void Delete_Success();
+	bool operator ==(const Course &p);
+	static void Change_Success();
 };
 

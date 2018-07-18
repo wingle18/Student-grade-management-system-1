@@ -11,6 +11,10 @@ Grade::Grade(const Grade & p):Student(p),Course(p),score(p.score),score_rank(p.s
 {
 }
 
+Grade::Grade(const Student & a, const Course & b, const int & c, const string & d, const double & e):Student(a),Course(b),score(c),score_rank(d),gradepoint(e)
+{
+}
+
 Grade::~Grade()
 {
 }
@@ -53,5 +57,60 @@ void Grade::TXT_I(ifstream & inf)
 void Grade::TXT_O(ofstream & of)
 {
 	of.open("grade.txt");
+}
+
+void Grade::Key_Change(vector <Student> &stu, vector <Course> &cou, vector <Grade> &gra)
+{
+	string a, b;
+	Student A;
+	Course B;
+	cout << "请输入学生的学号" << endl;
+	cin >> a;
+	cout << "请输入课程的课程号" << endl;
+	cin >> b;
+	vector <Student>::iterator it;
+	for (it = stu.begin();it != stu.end();it++)
+		if (it->Get_stu_num() == a)
+			A = *it;
+	vector <Course>::iterator it2;
+	for (it2 = cou.begin();it2 != cou.end();it2++)
+		if (it2->Get_course_num() == b)
+			B = *it2;
+	int c;
+	string d;
+	double e;
+	cout << "请输入百分制成绩:" << endl;
+	cin >> c;
+	cout << "请输入等级制成绩:" << endl;
+	cin >> d;
+	cout << "请输入学分绩:" << endl;
+	cin >> e;
+	*this = Grade(A, B, c, d, e);
+}
+
+void Grade::Write_Success()
+{
+	system("cls");
+	cout << "成绩输入成功" << endl;
+	system("pause");
+}
+
+void Grade::Delete_Success()
+{
+	system("cls");
+	cout << "删除课程信息成功!" << endl;
+	system("pause");
+}
+
+bool Grade::operator==(const Grade & p)
+{
+	return ((stu_num == p.stu_num) && (course_num == p.course_num));
+}
+
+void Grade::Change_Success()
+{
+	system("cls");
+	cout << "修改成绩成功" << endl;
+	system("pause");
 }
 
