@@ -23,4 +23,5 @@ public:
 	static void Delete_Success();
 	bool operator ==(const Grade &p);
 	static void Change_Success();
+	void Num_Change(vector <Student> &stu, vector <Course> &cou, vector <Grade> &gra);
 };

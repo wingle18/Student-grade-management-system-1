@@ -97,3 +97,14 @@ void Student::Change_Success()
 	cout << "修改学生信息成功" << endl;
 	system("pause");
 }
+
+void Student::Num_Change(vector<Student>& stu, vector<Course>& cou, vector<Grade>& gra)
+{
+	string a;
+	cout << "请输入学号" << endl;
+	cin >> a;
+	vector <Student> ::iterator it;
+	for (it = stu.begin();it != stu.end();it++)
+		if (it->Get_stu_num() == a)
+			*this = *it;
+}

@@ -114,3 +114,17 @@ void Grade::Change_Success()
 	system("pause");
 }
 
+void Grade::Num_Change(vector<Student>& stu, vector<Course>& cou, vector<Grade>& gra)
+{
+	string a;
+	cout << "请输入学生学号" << endl;
+	cin >> a;
+	string b;
+	cout << "请输入课程号" << endl;
+	cin >> b;
+	vector <Grade> ::iterator it;
+	for (it = gra.begin();it != gra.end();it++)
+		if (it->Get_stu_num() == a&&it->Get_stu_num()==b)
+			*this = *it;
+}
+

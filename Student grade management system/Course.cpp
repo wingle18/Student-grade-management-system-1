@@ -90,3 +90,14 @@ void Course::Change_Success()
 	system("pause");
 }
 
+void Course::Num_Change(vector<Student>& stu, vector<Course>& cou, vector<Grade>& gra)
+{
+	string a;
+	cout << "ÇëÊäÈë¿Î³ÌºÅ" << endl;
+	cin >> a;
+	vector <Course> ::iterator it;
+	for (it = cou.begin();it != cou.end();it++)
+		if (it->Get_course_num() == a)
+			*this = *it;
+}
+
