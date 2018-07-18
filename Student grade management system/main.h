@@ -6,8 +6,4 @@
 #include "fstream"
 #include "sstream"
 #include "sync.h"
-#include "Write_Info.h"
-#include "Delete_Info.h"
-#include "Change_Info.h"
-#include "Read_Info.h"
-void tmain();
+#include "mainwindow.h"

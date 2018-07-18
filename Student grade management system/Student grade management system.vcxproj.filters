@@ -30,16 +30,10 @@
     <ClCompile Include="Grade.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Write_Info.cpp">
+    <ClCompile Include="UI.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Delete_Info.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Read_Info.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Change_Info.cpp">
+    <ClCompile Include="mainwindow.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,19 +56,13 @@
     <ClInclude Include="main.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Write_Info.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Delete_Info.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Change_Info.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Read_Info.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="sync.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mainwindow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
