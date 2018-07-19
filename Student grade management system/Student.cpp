@@ -25,12 +25,7 @@ void Student::Inf_Change(ifstream & inf)
 	string a, b, c, d, e;
 	int f;
 	inf >> a >> b >> c >> d >> e >> f;
-	stu_name = a;
-	stu_num = b;
-	stu_sex = c;
-	major = d;
-	teach_class = e;
-	year = f;
+	*this = Student(a, b, c, d, e, f);
 }
 
 void Student::TXT_I(ifstream &inf)
@@ -43,34 +38,28 @@ void Student::TXT_O(ofstream &of)
 	of.open("student.txt");
 }
 
-void Student::Key_Change(vector <Student> &stu, vector <Course> &cou, vector <Grade> &gra)
+void Student::Key_Change(vector <Student> &stu, vector <Course> &cou, vector <Grade> &gra,const int &mode)
 {
-	string a, b, c, d, e;
-	int f;
-	cout << "请输入姓名:" << endl;
-	cin >> a;
-	cout << "请输入学号:" << endl;
-	cin >> b;
-	cout << "请输入性别:" << endl;
-	cin >> c;
-	cout << "请输入专业:" << endl;
-	cin >> d;
-	cout << "请输入教学班级:" << endl;
-	cin >> e;
-	cout << "请输入入学年份:" << endl;
-	cin >> f;
-	stu_name = a;
-	stu_num = b;
-	stu_sex = c;
-	major = d;
-	teach_class = e;
-	year = f;
+	if (mode == 0)
+	{
+		string a, b, c, d, e;
+		int f;
+		cout << "请输入姓名:" << endl;
+		cin >> a;
+		cout << "请输入学号:" << endl;
+		cin >> b;
+		cout << "请输入性别:" << endl;
+		cin >> c;
+		cout << "请输入专业:" << endl;
+		cin >> d;
+		cout << "请输入教学班级:" << endl;
+		cin >> e;
+		cout << "请输入入学年份:" << endl;
+		cin >> f;
+		*this = Student(a, b, c, d, e, f);
+	}
 }
 
-string Student::Get_stu_num()
-{
-	return stu_num;
-}
 
 void Student::Write_Success()
 {
@@ -105,6 +94,11 @@ void Student::Num_Change(vector<Student>& stu, vector<Course>& cou, vector<Grade
 	cin >> a;
 	vector <Student> ::iterator it;
 	for (it = stu.begin();it != stu.end();it++)
-		if (it->Get_stu_num() == a)
+		if (*it == a)
 			*this = *it;
+}
+
+bool Student::operator==(const string &a)
+{
+	return(a == stu_num);
 }

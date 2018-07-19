@@ -34,19 +34,7 @@ void Grade::Inf_Change(ifstream & inf)
 	int f, i, k;
 	double m;
 	inf >> a >> b >> c >> d >> e >> f >> g >> h >> i >> j >> k >> l >> m;
-	stu_name = a;
-	stu_num = b;
-	stu_sex = c;
-	major = d;
-	teach_class = e;
-	year = f;
-	course_num = g;
-	course_name = h;
-	course_credit = i;
-	course_semester = j;
-	score = k;
-	score_rank = l;
-	gradepoint = m;
+	*this = Grade(a, b, c, d, e, f, g, h, i, j, k, l, m);
 }
 
 void Grade::TXT_I(ifstream & inf)
@@ -59,33 +47,36 @@ void Grade::TXT_O(ofstream & of)
 	of.open("grade.txt");
 }
 
-void Grade::Key_Change(vector <Student> &stu, vector <Course> &cou, vector <Grade> &gra)
+void Grade::Key_Change(vector <Student> &stu, vector <Course> &cou, vector <Grade> &gra,const int &mode)
 {
-	string a, b;
-	Student A;
-	Course B;
-	cout << "请输入学生的学号" << endl;
-	cin >> a;
-	cout << "请输入课程的课程号" << endl;
-	cin >> b;
-	vector <Student>::iterator it;
-	for (it = stu.begin();it != stu.end();it++)
-		if (it->Get_stu_num() == a)
-			A = *it;
-	vector <Course>::iterator it2;
-	for (it2 = cou.begin();it2 != cou.end();it2++)
-		if (it2->Get_course_num() == b)
-			B = *it2;
-	int c;
-	string d;
-	double e;
-	cout << "请输入百分制成绩:" << endl;
-	cin >> c;
-	cout << "请输入等级制成绩:" << endl;
-	cin >> d;
-	cout << "请输入学分绩:" << endl;
-	cin >> e;
-	*this = Grade(A, B, c, d, e);
+	if (mode == 0)
+	{
+		string a, b;
+		Student A;
+		Course B;
+		cout << "请输入学生的学号" << endl;
+		cin >> a;
+		cout << "请输入课程的课程号" << endl;
+		cin >> b;
+		vector <Student>::iterator it;
+		for (it = stu.begin();it != stu.end();it++)
+			if (*it == a)
+				A = *it;
+		vector <Course>::iterator it2;
+		for (it2 = cou.begin();it2 != cou.end();it2++)
+			if (*it2 == b)
+				B = *it2;
+		int c;
+		string d;
+		double e;
+		cout << "请输入百分制成绩:" << endl;
+		cin >> c;
+		cout << "请输入等级制成绩:" << endl;
+		cin >> d;
+		cout << "请输入学分绩:" << endl;
+		cin >> e;
+		*this = Grade(A, B, c, d, e);
+	}
 }
 
 void Grade::Write_Success()
@@ -124,7 +115,74 @@ void Grade::Num_Change(vector<Student>& stu, vector<Course>& cou, vector<Grade>&
 	cin >> b;
 	vector <Grade> ::iterator it;
 	for (it = gra.begin();it != gra.end();it++)
-		if (it->Get_stu_num() == a&&it->Get_stu_num()==b)
+		if (Student(*it) == a&&Course(*it)==b)
 			*this = *it;
 }
+
+void Grade::Trans()
+{
+	if (score == 100)
+	{
+		score_rank = "A+";
+		gradepoint = 4;
+	}
+	else if (score <= 99 && score >= 95)
+	{
+		score_rank = "A";
+		gradepoint = 4;
+	}
+	else if (score <= 94 && score >= 90)
+	{
+		score_rank = "A-";
+		gradepoint = 3.7;
+	}
+	else if (score <= 89 && score >= 85)
+	{
+		score_rank = "B+";
+		gradepoint = 3.3;
+	}
+	else if (score <= 84 && score >= 80)
+	{
+		score_rank = "B";
+		gradepoint = 3;
+	}
+	else if (score <= 79 && score >= 77)
+	{
+		score_rank = "B-";
+		gradepoint = 2.7;
+	}
+	else if (score <= 76 && score >= 73)
+	{
+		score_rank = "C+";
+		gradepoint = 2.3;
+	}
+	else if (score <= 72 && score >= 70)
+	{
+		score_rank = "C";
+		gradepoint = 2;
+	}
+	else if (score <= 69 && score >= 67)
+	{
+		score_rank = "C-";
+		gradepoint = 1.7;
+	}
+	else if (score <= 66 && score >= 63)
+	{
+		score_rank = "D+";
+		gradepoint = 1.3;
+	}
+	else if (score <= 62 && score >= 60)
+	{
+		score_rank = "D";
+		gradepoint = 1;
+	}
+	else if (score <= 59 && score >= 0)
+	{
+		score_rank = "F";
+		gradepoint = 0;
+	}
+}
+
+
+
 

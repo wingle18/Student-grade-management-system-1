@@ -24,10 +24,7 @@ void Course::Inf_Change(ifstream & inf)
 	string a, b, d;
 	int c;
 	inf >> a >> b >> c >> d;
-	course_num = a;
-	course_name = b;
-	course_credit = c;
-	course_semester = d;
+	*this = Course(a, b, c, d);
 }
 
 
@@ -41,28 +38,24 @@ void Course::TXT_O(ofstream & of)
 	of.open("course.txt");
 }
 
-void Course::Key_Change(vector <Student> &stu, vector <Course> &cou, vector <Grade> &gra)
+void Course::Key_Change(vector <Student> &stu, vector <Course> &cou, vector <Grade> &gra,const int &mode)
 {
-	string a, b, d;
-	int c;
-	cout << "请输入课程号:" << endl;
-	cin >> a;
-	cout << "请输入课程名:" << endl;
-	cin >> b;
-	cout << "请输入课程学分:" << endl;
-	cin >> c;
-	cout << "请输入课程所属学期:" << endl;
-	cin >> d;
-	course_num = a;
-	course_name = b;
-	course_credit = c;
-	course_semester = d;
+	if (mode == 0)
+	{
+		string a, b, d;
+		int c;
+		cout << "请输入课程号:" << endl;
+		cin >> a;
+		cout << "请输入课程名:" << endl;
+		cin >> b;
+		cout << "请输入课程学分:" << endl;
+		cin >> c;
+		cout << "请输入课程所属学期:" << endl;
+		cin >> d;
+		*this = Course(a, b, c, d);
+	}
 }
 
-string Course::Get_course_num()
-{
-	return course_num;
-}
 
 void Course::Write_Success()
 {
@@ -97,7 +90,12 @@ void Course::Num_Change(vector<Student>& stu, vector<Course>& cou, vector<Grade>
 	cin >> a;
 	vector <Course> ::iterator it;
 	for (it = cou.begin();it != cou.end();it++)
-		if (it->Get_course_num() == a)
+		if (*it == a)
 			*this = *it;
+}
+
+bool Course::operator==(const string & a)
+{
+	return(course_num == a);
 }
 

@@ -18,10 +18,11 @@ public:
 	void Inf_Change(ifstream &inf);
 	static void TXT_I(ifstream &inf);
 	static void TXT_O(ofstream &of);
-	void Key_Change(vector <Student> &stu, vector <Course> &cou, vector <Grade> &gra);
+	void Key_Change(vector <Student> &stu, vector <Course> &cou, vector <Grade> &gra,const int &mode);
 	static void Write_Success();
 	static void Delete_Success();
 	bool operator ==(const Grade &p);
 	static void Change_Success();
 	void Num_Change(vector <Student> &stu, vector <Course> &cou, vector <Grade> &gra);
+	void Trans();
 };

@@ -22,11 +22,11 @@ public:
 	void Inf_Change (ifstream &inf);
 	static void TXT_I(ifstream &inf);
 	static void TXT_O(ofstream &of);
-	void Key_Change(vector <Student> &stu, vector <Course> &cou, vector <Grade> &gra);		//带键盘输入的
-	string Get_stu_num();
+	void Key_Change(vector <Student> &stu, vector <Course> &cou, vector <Grade> &gra,const int &mode);		//带键盘输入的
 	static void Write_Success();
 	static void Delete_Success();
 	bool operator ==(const Student &p);
 	static void Change_Success();
 	void Num_Change(vector <Student> &stu, vector <Course> &cou, vector <Grade> &gra);
+	bool operator ==(const string &a);
 };
